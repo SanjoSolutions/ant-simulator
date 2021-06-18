@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Ant Simulator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<script type="module">
+  import { Environment } from './index.js'
+  import { Ant } from './ant.js'
+  const environment = new Environment(Ant)
+  document.body.appendChild(environment.canvas)
+  environment.render()
+
+  function onTick() {
+    environment.onTick()
+    environment.render()
+    scheduleNextTick()
+  }
+
+  function scheduleNextTick() {
+    requestAnimationFrame(onTick)
+  }
+
+  scheduleNextTick()
+</script>
+</body>
+</html>
